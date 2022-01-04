@@ -1,4 +1,4 @@
-#include <iosteam>
+#include <iostream>
 #include "./lib/Sales_item.h"
 
 int main()
