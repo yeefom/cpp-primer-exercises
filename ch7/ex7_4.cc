@@ -8,6 +8,12 @@ class Person {
   string address;
 
   public:
+    Person() = default;
+
+    Person(string n) : name(n) {};
+
+    Person(string &n, string &a) : name(n), address(a) {};
+
     const string &GetName() const {
       return name;
     }
@@ -47,9 +53,12 @@ int main(int argc, char const *argv[])
   read(cin, p1);
   print(cout, p1) << endl;
 
-  Person p2;
-  read(cin, p2);
+  string name, address;
+  cin >> name >> address;
+  Person p2 = Person(name, address);
   print(cout, p2) << endl;
+
+  cout << p2.GetAddress() << endl;
 
   return 0;
 }
