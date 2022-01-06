@@ -4,14 +4,16 @@
 using namespace std;
 
 class Person {
-  string name;
-  string address;
+  friend istream &read(istream &is, Person &person);
+  friend ostream &print(ostream &os, const Person &person);
+
+  private:
+    string name;
+    string address;
 
   public:
     Person() = default;
-
     Person(string n) : name(n) {};
-
     Person(string &n, string &a) : name(n), address(a) {};
 
     const string &GetName() const {
@@ -21,30 +23,14 @@ class Person {
     const string &GetAddress() const {
       return address;
     }
-
-    Person &SetName(string name) {
-      this->name = name;
-      return *this;
-    }
-
-    Person &SetAddress(string address) {
-      this->address = address;
-      return *this;
-    }
 };
 
 istream &read(istream &is, Person &person) {
-  string name, address;
-
-  is >> name >> address;
-
-  person.SetName(name).SetAddress(address);
-
-  return is;
+  return is >> person.name >> person.address;
 }
 
 ostream &print(ostream &os, const Person &person) {
-  return os << person.GetName() << " " << person.GetAddress();
+  return os << person.name << " " << person.address;
 }
 
 int main(int argc, char const *argv[])
